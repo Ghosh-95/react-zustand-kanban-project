@@ -4,9 +4,9 @@ function App() {
 
   return (
     <div className='app'>
-      <Column state={'Ongoing'} />
-      <Column state={'Planned'} />
-      <Column state={'Done'} />
+      <Column state={'ongoing'} />
+      <Column state={'planned'} />
+      <Column state={'done'} />
 
     </div>
   )
