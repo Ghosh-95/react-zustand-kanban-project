@@ -1,0 +1,17 @@
+:root {
+  --color-gray: #333333;
+  --color-gray-dark: #222222;
+  --color-gray-light: #cccccc;
+  --color-ongoing: #98c139;
+  --color-done: #ee6c4d;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  background-color: var(--color-gray);
+  min-height: 100vh;
+}
