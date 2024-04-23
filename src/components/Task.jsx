@@ -1,7 +1,7 @@
 import { myStore } from "../store";
 
-export default function Task({ title }) {
-    const task = myStore(store => store.tasks.find(task => task.title === title));
+export default function Task({ data: { id } }) {
+    const task = myStore(store => store.tasks.find(task => task.id === id));
 
     return (
         <article className="task">
