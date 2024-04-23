@@ -11,7 +11,8 @@ function generateId() {
 
 const store = (set) => ({
     tasks: [{ title: "TestTask", state: "planned", id: generateId() }],
-    addTask: (state, title, id = generateId()) => set(store => ({ tasks: [...store.tasks, { state, title, id }] }))
+    addTask: (state, title, id = generateId()) => set(store => ({ tasks: [...store.tasks, { state, title, id }] })),
+    deleteTask: (id) => set(store => ({ tasks: store.tasks.filter(task => task.id !== id) })),
 });
 
 export const myStore = create(store);
