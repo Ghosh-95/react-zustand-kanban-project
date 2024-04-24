@@ -11,8 +11,11 @@ function generateId() {
 
 const store = (set) => ({
     tasks: [{ title: "TestTask", state: "planned", id: generateId() }],
+    dragTask: null,
     addTask: (state, title, id = generateId()) => set(store => ({ tasks: [...store.tasks, { state, title, id }] })),
     deleteTask: (id) => set(store => ({ tasks: store.tasks.filter(task => task.id !== id) })),
+    setDragTask: (id) => set({ dragTask: id }),
+    moveTask: (id, state) => set(store => ({ tasks: store.tasks.map(task => task.id === id ? { id, state, title: task.title } : task) }))
 });
 
 export const myStore = create(store);
