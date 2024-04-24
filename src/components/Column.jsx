@@ -6,6 +6,7 @@ import { useState } from "react";
 export default function Column({ state }) {
     const [title, setTitle] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const [drop, setDrop] = useState(false);
 
     const tasks = myStore((store) => {
         return store.tasks.filter(task => task.state === state);
@@ -17,8 +18,19 @@ export default function Column({ state }) {
     const moveTask = myStore(store => store.moveTask);
 
     return (
-        <section className="column" onDragOver={(e) => e.preventDefault()}
+        <section className={`column ${drop ? 'drop' : ''}`}
+            onDragOver={(e) => {
+                e.preventDefault();
+                setDrop(true);
+            }}
+
+            onDragLeave={(e) => {
+                e.preventDefault();
+                setDrop(false);
+            }}
+
             onDrop={() => {
+                setDrop(false);
                 moveTask(draggedTask, state);
                 setDragTask(null);
             }}
@@ -35,8 +47,8 @@ export default function Column({ state }) {
             {isOpen && <article className="modal">
                 <form id="modal-items">
                     <input type="text" name="task-input" value={title} onChange={e => setTitle(e.target.value)} />
-                    <button onClick={() => {
-
+                    <button onClick={(e) => {
+                        e.preventDefault();
                         addTask(state, title);
                         setTitle('');
                         setIsOpen(false);
